@@ -48,6 +48,9 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
+    <Reference Include="UnityEngine">
+      <HintPath>D:\SteamLibrary\steamapps\common\Valheim\valheim_Data\Managed\UnityEngine.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEngine.AssetBundleModule">
       <HintPath>D:\SteamLibrary\steamapps\common\Valheim\valheim_Data\Managed\UnityEngine.AssetBundleModule.dll</HintPath>
     </Reference>
@@ -59,8 +62,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="StationFixerPlugin.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>if not exist "C:\Users\JPNM9\AppData\Roaming\r2modmanPlus-local\Valheim\profiles\Default\BepInEx\plugins\StationLimitsFixer" mkdir "C:\Users\JPNM9\AppData\Roaming\r2modmanPlus-local\Valheim\profiles\Default\BepInEx\plugins\StationLimitsFixer"
+copy /Y "$(TargetPath)" "C:\Users\JPNM9\AppData\Roaming\r2modmanPlus-local\Valheim\profiles\Default\BepInEx\plugins\StationLimitsFixer\"</PostBuildEvent>
+  </PropertyGroup>
 </Project>
