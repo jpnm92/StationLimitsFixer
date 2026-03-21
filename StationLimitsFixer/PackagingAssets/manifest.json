@@ -1,0 +1,9 @@
+{
+    "name": "StationLimitsFixer",
+    "version_number": "1.1.0",
+    "website_url": "",
+    "description": "Shrinks the physical placement boundaries of crafting station improvements, extends their connection range, and allows brute-forcing smelters/kilns anywhere.",
+    "dependencies": [
+        "denikson-BepInExPack_Valheim-5.4.2202"
+    ]
+}

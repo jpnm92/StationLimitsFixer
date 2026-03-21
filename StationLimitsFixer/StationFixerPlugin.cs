@@ -7,12 +7,16 @@ using System.Collections.Generic;
 
 namespace StationLimitsFixer
 {
-    [BepInPlugin("com.custom.stationlimits", "Station Limits Fixer", "1.1.0")] // Incremented version for the fix
+    [BepInPlugin("com.custom.stationlimits", "Station Limits Fixer", "1.1.0")] // FAFO Edition
     public class StationFixerPlugin : BaseUnityPlugin
     {
         public static ConfigEntry<float> HitboxSize;
         public static ConfigEntry<float> MaxConnectionDistance;
         public static ConfigEntry<bool> RemoveRoofRequirement;
+
+        // NEW CONFIG: The Brute Force Toggle
+        public static ConfigEntry<bool> BruteForceSmelters;
+
         internal static ManualLogSource StaticLogger;
 
         void Awake()
@@ -22,6 +26,9 @@ namespace StationLimitsFixer
             HitboxSize = Config.Bind("General", "ImprovementHitboxSize", 0.6f, "Size of the physical footprint. 0.1 is tiny.");
             MaxConnectionDistance = Config.Bind("General", "MaxRange", 25f, "Maximum distance between a crafting station and its improvements.");
             RemoveRoofRequirement = Config.Bind("General", "NoRoofRequired", false, "If true, main crafting stations work even without a roof or in the rain.");
+
+            // NEW CONFIG: Default is true (because we hate physics)
+            BruteForceSmelters = Config.Bind("Advanced", "ForceSmelterPlacement", true, "If true, Smelters, Kilns, and Windmills can be placed ANYWHERE, ignoring terrain rules.");
 
             HitboxSize.SettingChanged += (sender, args) => ApplyChanges();
             MaxConnectionDistance.SettingChanged += (sender, args) => ApplyChanges();
@@ -92,6 +99,75 @@ namespace StationLimitsFixer
                 count++;
             }
             StaticLogger.LogInfo($"Successfully patched {count} crafting pieces.");
+        }
+
+        // ------------------------------------------------------------------
+        // NEW FEATURE: The Brute Force Placement Patch
+        // ------------------------------------------------------------------
+        [HarmonyPatch(typeof(Player), "UpdatePlacementGhost")]
+        public static class BruteForcePlacementPatch
+        {
+            public static void Postfix(Player __instance, ref GameObject ___m_placementGhost)
+            {
+                // If the user turned it off in the config, skip this entire patch
+                if (!BruteForceSmelters.Value) return;
+
+                if (___m_placementGhost == null) return;
+
+                Piece piece = ___m_placementGhost.GetComponent<Piece>();
+
+                string[] bulkyPieces = { 
+                    "$piece_smelter", 
+                    "$piece_charcoalkiln", 
+                    "$piece_blastfurnace", 
+                    "$piece_windmill" 
+                };
+
+                // If the piece is in our list, override the physics engine
+                if (piece != null && System.Array.Exists(bulkyPieces, name => name == piece.m_name))
+                {
+                    try
+                    {
+                        // Safely set the m_placementStatus enum
+                        var statusField = Traverse.Create(__instance).Field("m_placementStatus");
+                        System.Type enumType = statusField.GetValueType();
+                        if (enumType != null)
+                        {
+                            statusField.SetValue(System.Enum.ToObject(enumType, 0)); // 0 = Valid
+                        }
+                        else
+                        {
+                            statusField.SetValue(0);
+                        }
+
+                        // Safely invoke SetPlacementGhostValid
+                        var methodWithBool = Traverse.Create(__instance).Method("SetPlacementGhostValid", new System.Type[] { typeof(bool) });
+                        if (methodWithBool.MethodExists())
+                        {
+                            methodWithBool.GetValue(true);
+                        }
+                        else
+                        {
+                            var methodNoArgs = Traverse.Create(__instance).Method("SetPlacementGhostValid");
+                            if (methodNoArgs.MethodExists())
+                            {
+                                methodNoArgs.GetValue();
+                            }
+                        }
+
+                        // Also try the Piece's SetInvalidPlacementHeightlight (often used to clear red color)
+                        var heightlightMethod = Traverse.Create(piece).Method("SetInvalidPlacementHeightlight", new System.Type[] { typeof(bool) });
+                        if (heightlightMethod.MethodExists())
+                        {
+                            heightlightMethod.GetValue(false);
+                        }
+                    }
+                    catch (System.Exception ex)
+                    {
+                        StaticLogger.LogError($"[Station Limits Fixer] Failed to override placement for {piece.m_name}: {ex.Message}");
+                    }
+                }
+            }
         }
     }
 }
