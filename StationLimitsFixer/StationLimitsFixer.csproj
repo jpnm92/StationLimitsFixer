@@ -1,209 +1,216 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-	<Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')"/>
-	<PropertyGroup>
-		<Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-		<Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-		<ProjectGuid>{29ED45D8-F11D-4A1C-A98A-2ABD302332EF}</ProjectGuid>
-		<OutputType>Library</OutputType>
-		<AppDesignerFolder>Properties</AppDesignerFolder>
-		<RootNamespace>StationLimitsFixer</RootNamespace>
-		<AssemblyName>StationLimitsFixer</AssemblyName>
-		<TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
-		<FileAlignment>512</FileAlignment>
-		<Deterministic>true</Deterministic>
-	</PropertyGroup>
-	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-		<DebugSymbols>true</DebugSymbols>
-		<DebugType>full</DebugType>
-		<Optimize>false</Optimize>
-		<OutputPath>bin\Debug\</OutputPath>
-		<DefineConstants>DEBUG;TRACE</DefineConstants>
-		<ErrorReport>prompt</ErrorReport>
-		<WarningLevel>4</WarningLevel>
-	</PropertyGroup>
-	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-		<DebugType>pdbonly</DebugType>
-		<Optimize>true</Optimize>
-		<OutputPath>bin\Release\</OutputPath>
-		<DefineConstants>TRACE</DefineConstants>
-		<ErrorReport>prompt</ErrorReport>
-		<WarningLevel>4</WarningLevel>
-	</PropertyGroup>
-	<ItemGroup>
-		<Reference Include="0Harmony">
-			<HintPath>..\..\..\..\AppData\Roaming\r2modmanPlus-local\Valheim\profiles\Default\BepInEx\core\0Harmony.dll</HintPath>
-		</Reference>
-		<Reference Include="assembly_valheim">
-			<HintPath>D:\SteamLibrary\steamapps\common\Valheim\valheim_Data\Managed\assembly_valheim.dll</HintPath>
-		</Reference>
-		<Reference Include="BepInEx">
-			<HintPath>..\..\..\..\AppData\Roaming\r2modmanPlus-local\Valheim\profiles\Default\BepInEx\core\BepInEx.dll</HintPath>
-		</Reference>
-		<Reference Include="System"/>
-		<Reference Include="System.Core"/>
-		<Reference Include="System.Xml.Linq"/>
-		<Reference Include="System.Data.DataSetExtensions"/>
-		<Reference Include="Microsoft.CSharp"/>
-		<Reference Include="System.Data"/>
-		<Reference Include="System.Net.Http"/>
-		<Reference Include="System.Xml"/>
-		<Reference Include="UnityEngine">
-			<HintPath>D:\SteamLibrary\steamapps\common\Valheim\valheim_Data\Managed\UnityEngine.dll</HintPath>
-		</Reference>
-		<Reference Include="UnityEngine.AssetBundleModule">
-			<HintPath>D:\SteamLibrary\steamapps\common\Valheim\valheim_Data\Managed\UnityEngine.AssetBundleModule.dll</HintPath>
-		</Reference>
-		<Reference Include="UnityEngine.CoreModule">
-			<HintPath>D:\SteamLibrary\steamapps\common\Valheim\valheim_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
-		</Reference>
-		<Reference Include="UnityEngine.PhysicsModule">
-			<HintPath>D:\SteamLibrary\steamapps\common\Valheim\valheim_Data\Managed\UnityEngine.PhysicsModule.dll</HintPath>
-		</Reference>
-	</ItemGroup>
-	<ItemGroup>
-		<Compile Include="obj\Debug\.NETFramework,Version=v4.7.2.AssemblyAttributes.cs"/>
-		<Compile Include="StationFixerPlugin.cs"/>
-		<Compile Include="Properties\AssemblyInfo.cs"/>
-	</ItemGroup>
-	<ItemGroup>
-		<Folder Include="bin\Release\"/>
-		<Folder Include="obj\Debug\TempPE\"/>
-	</ItemGroup>
-	<ItemGroup>
-		<Content Include="bin\Debug\0Harmony.dll"/>
-		<Content Include="bin\Debug\0Harmony.xml"/>
-		<Content Include="bin\Debug\assembly_googleanalytics.dll"/>
-		<Content Include="bin\Debug\assembly_guiutils.dll"/>
-		<Content Include="bin\Debug\assembly_postprocessing.dll"/>
-		<Content Include="bin\Debug\assembly_sunshafts.dll"/>
-		<Content Include="bin\Debug\assembly_utils.dll"/>
-		<Content Include="bin\Debug\assembly_valheim.dll"/>
-		<Content Include="bin\Debug\BepInEx.dll"/>
-		<Content Include="bin\Debug\BepInEx.pdb"/>
-		<Content Include="bin\Debug\BepInEx.xml"/>
-		<Content Include="bin\Debug\com.rlabrecque.steamworks.net.dll"/>
-		<Content Include="bin\Debug\gui_framework.dll"/>
-		<Content Include="bin\Debug\Mono.Cecil.dll"/>
-		<Content Include="bin\Debug\MonoMod.RuntimeDetour.dll"/>
-		<Content Include="bin\Debug\MonoMod.RuntimeDetour.xml"/>
-		<Content Include="bin\Debug\MonoMod.Utils.dll"/>
-		<Content Include="bin\Debug\MonoMod.Utils.xml"/>
-		<Content Include="bin\Debug\netstandard.dll"/>
-		<Content Include="bin\Debug\PlayFab.dll"/>
-		<Content Include="bin\Debug\PlayFabParty.dll"/>
-		<Content Include="bin\Debug\SoftReferenceableAssets.dll"/>
-		<Content Include="bin\Debug\Splatform.dll"/>
-		<Content Include="bin\Debug\StationLimitsFixer.dll"/>
-		<Content Include="bin\Debug\StationLimitsFixer.pdb"/>
-		<Content Include="bin\Debug\Unity.InputSystem.dll"/>
-		<Content Include="bin\Debug\Unity.TextMeshPro.dll"/>
-		<Content Include="bin\Debug\UnityEngine.AccessibilityModule.dll"/>
-		<Content Include="bin\Debug\UnityEngine.AIModule.dll"/>
-		<Content Include="bin\Debug\UnityEngine.AMDModule.dll"/>
-		<Content Include="bin\Debug\UnityEngine.AndroidJNIModule.dll"/>
-		<Content Include="bin\Debug\UnityEngine.AnimationModule.dll"/>
-		<Content Include="bin\Debug\UnityEngine.ARModule.dll"/>
-		<Content Include="bin\Debug\UnityEngine.AssetBundleModule.dll"/>
-		<Content Include="bin\Debug\UnityEngine.AudioModule.dll"/>
-		<Content Include="bin\Debug\UnityEngine.ClothModule.dll"/>
-		<Content Include="bin\Debug\UnityEngine.ClusterInputModule.dll"/>
-		<Content Include="bin\Debug\UnityEngine.ClusterRendererModule.dll"/>
-		<Content Include="bin\Debug\UnityEngine.ContentLoadModule.dll"/>
-		<Content Include="bin\Debug\UnityEngine.CoreModule.dll"/>
-		<Content Include="bin\Debug\UnityEngine.CrashReportingModule.dll"/>
-		<Content Include="bin\Debug\UnityEngine.DirectorModule.dll"/>
-		<Content Include="bin\Debug\UnityEngine.dll"/>
-		<Content Include="bin\Debug\UnityEngine.DSPGraphModule.dll"/>
-		<Content Include="bin\Debug\UnityEngine.GameCenterModule.dll"/>
-		<Content Include="bin\Debug\UnityEngine.GridModule.dll"/>
-		<Content Include="bin\Debug\UnityEngine.HierarchyCoreModule.dll"/>
-		<Content Include="bin\Debug\UnityEngine.ImageConversionModule.dll"/>
-		<Content Include="bin\Debug\UnityEngine.IMGUIModule.dll"/>
-		<Content Include="bin\Debug\UnityEngine.InputForUIModule.dll"/>
-		<Content Include="bin\Debug\UnityEngine.InputLegacyModule.dll"/>
-		<Content Include="bin\Debug\UnityEngine.InputModule.dll"/>
-		<Content Include="bin\Debug\UnityEngine.JSONSerializeModule.dll"/>
-		<Content Include="bin\Debug\UnityEngine.LocalizationModule.dll"/>
-		<Content Include="bin\Debug\UnityEngine.MarshallingModule.dll"/>
-		<Content Include="bin\Debug\UnityEngine.MultiplayerModule.dll"/>
-		<Content Include="bin\Debug\UnityEngine.NVIDIAModule.dll"/>
-		<Content Include="bin\Debug\UnityEngine.ParticleSystemModule.dll"/>
-		<Content Include="bin\Debug\UnityEngine.PerformanceReportingModule.dll"/>
-		<Content Include="bin\Debug\UnityEngine.Physics2DModule.dll"/>
-		<Content Include="bin\Debug\UnityEngine.PhysicsModule.dll"/>
-		<Content Include="bin\Debug\UnityEngine.PropertiesModule.dll"/>
-		<Content Include="bin\Debug\UnityEngine.ScreenCaptureModule.dll"/>
-		<Content Include="bin\Debug\UnityEngine.SharedInternalsModule.dll"/>
-		<Content Include="bin\Debug\UnityEngine.SpriteMaskModule.dll"/>
-		<Content Include="bin\Debug\UnityEngine.SpriteShapeModule.dll"/>
-		<Content Include="bin\Debug\UnityEngine.StreamingModule.dll"/>
-		<Content Include="bin\Debug\UnityEngine.SubsystemsModule.dll"/>
-		<Content Include="bin\Debug\UnityEngine.TerrainModule.dll"/>
-		<Content Include="bin\Debug\UnityEngine.TerrainPhysicsModule.dll"/>
-		<Content Include="bin\Debug\UnityEngine.TextCoreFontEngineModule.dll"/>
-		<Content Include="bin\Debug\UnityEngine.TextCoreTextEngineModule.dll"/>
-		<Content Include="bin\Debug\UnityEngine.TextRenderingModule.dll"/>
-		<Content Include="bin\Debug\UnityEngine.TilemapModule.dll"/>
-		<Content Include="bin\Debug\UnityEngine.TLSModule.dll"/>
-		<Content Include="bin\Debug\UnityEngine.UI.dll"/>
-		<Content Include="bin\Debug\UnityEngine.UIElementsModule.dll"/>
-		<Content Include="bin\Debug\UnityEngine.UIModule.dll"/>
-		<Content Include="bin\Debug\UnityEngine.UnityAnalyticsCommonModule.dll"/>
-		<Content Include="bin\Debug\UnityEngine.UnityAnalyticsModule.dll"/>
-		<Content Include="bin\Debug\UnityEngine.UnityConnectModule.dll"/>
-		<Content Include="bin\Debug\UnityEngine.UnityCurlModule.dll"/>
-		<Content Include="bin\Debug\UnityEngine.UnityWebRequestAssetBundleModule.dll"/>
-		<Content Include="bin\Debug\UnityEngine.UnityWebRequestAudioModule.dll"/>
-		<Content Include="bin\Debug\UnityEngine.UnityWebRequestModule.dll"/>
-		<Content Include="bin\Debug\UnityEngine.UnityWebRequestTextureModule.dll"/>
-		<Content Include="bin\Debug\UnityEngine.UnityWebRequestWWWModule.dll"/>
-		<Content Include="bin\Debug\UnityEngine.VehiclesModule.dll"/>
-		<Content Include="bin\Debug\UnityEngine.VFXModule.dll"/>
-		<Content Include="bin\Debug\UnityEngine.VideoModule.dll"/>
-		<Content Include="bin\Debug\UnityEngine.VirtualTexturingModule.dll"/>
-		<Content Include="bin\Debug\UnityEngine.VRModule.dll"/>
-		<Content Include="bin\Debug\UnityEngine.WindModule.dll"/>
-		<Content Include="bin\Debug\UnityEngine.XRModule.dll"/>
-		<Content Include="obj\Debug\StationLimitsFixer.csproj.FileListAbsolute.txt"/>
-		<Content Include="obj\Debug\StationLimitsFixer.dll"/>
-		<Content Include="obj\Debug\StationLimitsFixer.pdb"/>
-		<Content Include="PackagingAssets\icon.png"/>
-		<Content Include="PackagingAssets\README.txt"/>
-	</ItemGroup>
-	<ItemGroup>
-		<None Include="obj\Debug\DesignTimeResolveAssemblyReferences.cache"/>
-		<None Include="obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache"/>
-		<None Include="obj\Debug\StationL.91DD3F88.Up2Date"/>
-		<None Include="obj\Debug\StationLimitsFixer.csproj.AssemblyReference.cache"/>
-		<None Include="obj\Debug\StationLimitsFixer.csproj.CoreCompileInputs.cache"/>
-		<None Include="PackagingAssets\manifest.json"/>
-		<None Include="PackagingAssets\README.md"/>
-	</ItemGroup>
-	<Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets"/>
-	<PropertyGroup>
-		<PostBuildEvent>
-			if not exist "C:\Users\JPNM9\AppData\Roaming\r2modmanPlus-local\Valheim\profiles\Default\BepInEx\plugins\StationLimitsFixer" mkdir "C:\Users\JPNM9\AppData\Roaming\r2modmanPlus-local\Valheim\profiles\Default\BepInEx\plugins\StationLimitsFixer"
-			copy /Y "$(TargetPath)" "C:\Users\JPNM9\AppData\Roaming\r2modmanPlus-local\Valheim\profiles\Default\BepInEx\plugins\StationLimitsFixer\"
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{29ED45D8-F11D-4A1C-A98A-2ABD302332EF}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>StationLimitsFixer</RootNamespace>
+    <AssemblyName>StationLimitsFixer</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="0Harmony">
+      <HintPath>..\..\..\..\AppData\Roaming\r2modmanPlus-local\Valheim\profiles\Default\BepInEx\core\0Harmony.dll</HintPath>
+    </Reference>
+    <Reference Include="assembly_valheim">
+      <HintPath>D:\SteamLibrary\steamapps\common\Valheim\valheim_Data\Managed\assembly_valheim.dll</HintPath>
+    </Reference>
+    <Reference Include="BepInEx">
+      <HintPath>..\..\..\..\AppData\Roaming\r2modmanPlus-local\Valheim\profiles\Default\BepInEx\core\BepInEx.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+    <Reference Include="UnityEngine">
+      <HintPath>D:\SteamLibrary\steamapps\common\Valheim\valheim_Data\Managed\UnityEngine.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.AssetBundleModule">
+      <HintPath>D:\SteamLibrary\steamapps\common\Valheim\valheim_Data\Managed\UnityEngine.AssetBundleModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.CoreModule">
+      <HintPath>D:\SteamLibrary\steamapps\common\Valheim\valheim_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.PhysicsModule">
+      <HintPath>D:\SteamLibrary\steamapps\common\Valheim\valheim_Data\Managed\UnityEngine.PhysicsModule.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="obj\Debug\.NETFramework,Version=v4.7.2.AssemblyAttributes.cs" />
+    <Compile Include="StationFixerPlugin.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="bin\Release\" />
+    <Folder Include="obj\Debug\TempPE\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="bin\Debug\0Harmony.dll" />
+    <Content Include="bin\Debug\0Harmony.xml" />
+    <Content Include="bin\Debug\assembly_googleanalytics.dll" />
+    <Content Include="bin\Debug\assembly_guiutils.dll" />
+    <Content Include="bin\Debug\assembly_postprocessing.dll" />
+    <Content Include="bin\Debug\assembly_sunshafts.dll" />
+    <Content Include="bin\Debug\assembly_utils.dll" />
+    <Content Include="bin\Debug\assembly_valheim.dll" />
+    <Content Include="bin\Debug\BepInEx.dll" />
+    <Content Include="bin\Debug\BepInEx.pdb" />
+    <Content Include="bin\Debug\BepInEx.xml" />
+    <Content Include="bin\Debug\com.rlabrecque.steamworks.net.dll" />
+    <Content Include="bin\Debug\gui_framework.dll" />
+    <Content Include="bin\Debug\Mono.Cecil.dll" />
+    <Content Include="bin\Debug\MonoMod.RuntimeDetour.dll" />
+    <Content Include="bin\Debug\MonoMod.RuntimeDetour.xml" />
+    <Content Include="bin\Debug\MonoMod.Utils.dll" />
+    <Content Include="bin\Debug\MonoMod.Utils.xml" />
+    <Content Include="bin\Debug\netstandard.dll" />
+    <Content Include="bin\Debug\PlayFab.dll" />
+    <Content Include="bin\Debug\PlayFabParty.dll" />
+    <Content Include="bin\Debug\SoftReferenceableAssets.dll" />
+    <Content Include="bin\Debug\Splatform.dll" />
+    <Content Include="bin\Debug\StationLimitsFixer.dll" />
+    <Content Include="bin\Debug\StationLimitsFixer.pdb" />
+    <Content Include="bin\Debug\Unity.InputSystem.dll" />
+    <Content Include="bin\Debug\Unity.TextMeshPro.dll" />
+    <Content Include="bin\Debug\UnityEngine.AccessibilityModule.dll" />
+    <Content Include="bin\Debug\UnityEngine.AIModule.dll" />
+    <Content Include="bin\Debug\UnityEngine.AMDModule.dll" />
+    <Content Include="bin\Debug\UnityEngine.AndroidJNIModule.dll" />
+    <Content Include="bin\Debug\UnityEngine.AnimationModule.dll" />
+    <Content Include="bin\Debug\UnityEngine.ARModule.dll" />
+    <Content Include="bin\Debug\UnityEngine.AssetBundleModule.dll" />
+    <Content Include="bin\Debug\UnityEngine.AudioModule.dll" />
+    <Content Include="bin\Debug\UnityEngine.ClothModule.dll" />
+    <Content Include="bin\Debug\UnityEngine.ClusterInputModule.dll" />
+    <Content Include="bin\Debug\UnityEngine.ClusterRendererModule.dll" />
+    <Content Include="bin\Debug\UnityEngine.ContentLoadModule.dll" />
+    <Content Include="bin\Debug\UnityEngine.CoreModule.dll" />
+    <Content Include="bin\Debug\UnityEngine.CrashReportingModule.dll" />
+    <Content Include="bin\Debug\UnityEngine.DirectorModule.dll" />
+    <Content Include="bin\Debug\UnityEngine.dll" />
+    <Content Include="bin\Debug\UnityEngine.DSPGraphModule.dll" />
+    <Content Include="bin\Debug\UnityEngine.GameCenterModule.dll" />
+    <Content Include="bin\Debug\UnityEngine.GridModule.dll" />
+    <Content Include="bin\Debug\UnityEngine.HierarchyCoreModule.dll" />
+    <Content Include="bin\Debug\UnityEngine.ImageConversionModule.dll" />
+    <Content Include="bin\Debug\UnityEngine.IMGUIModule.dll" />
+    <Content Include="bin\Debug\UnityEngine.InputForUIModule.dll" />
+    <Content Include="bin\Debug\UnityEngine.InputLegacyModule.dll" />
+    <Content Include="bin\Debug\UnityEngine.InputModule.dll" />
+    <Content Include="bin\Debug\UnityEngine.JSONSerializeModule.dll" />
+    <Content Include="bin\Debug\UnityEngine.LocalizationModule.dll" />
+    <Content Include="bin\Debug\UnityEngine.MarshallingModule.dll" />
+    <Content Include="bin\Debug\UnityEngine.MultiplayerModule.dll" />
+    <Content Include="bin\Debug\UnityEngine.NVIDIAModule.dll" />
+    <Content Include="bin\Debug\UnityEngine.ParticleSystemModule.dll" />
+    <Content Include="bin\Debug\UnityEngine.PerformanceReportingModule.dll" />
+    <Content Include="bin\Debug\UnityEngine.Physics2DModule.dll" />
+    <Content Include="bin\Debug\UnityEngine.PhysicsModule.dll" />
+    <Content Include="bin\Debug\UnityEngine.PropertiesModule.dll" />
+    <Content Include="bin\Debug\UnityEngine.ScreenCaptureModule.dll" />
+    <Content Include="bin\Debug\UnityEngine.SharedInternalsModule.dll" />
+    <Content Include="bin\Debug\UnityEngine.SpriteMaskModule.dll" />
+    <Content Include="bin\Debug\UnityEngine.SpriteShapeModule.dll" />
+    <Content Include="bin\Debug\UnityEngine.StreamingModule.dll" />
+    <Content Include="bin\Debug\UnityEngine.SubsystemsModule.dll" />
+    <Content Include="bin\Debug\UnityEngine.TerrainModule.dll" />
+    <Content Include="bin\Debug\UnityEngine.TerrainPhysicsModule.dll" />
+    <Content Include="bin\Debug\UnityEngine.TextCoreFontEngineModule.dll" />
+    <Content Include="bin\Debug\UnityEngine.TextCoreTextEngineModule.dll" />
+    <Content Include="bin\Debug\UnityEngine.TextRenderingModule.dll" />
+    <Content Include="bin\Debug\UnityEngine.TilemapModule.dll" />
+    <Content Include="bin\Debug\UnityEngine.TLSModule.dll" />
+    <Content Include="bin\Debug\UnityEngine.UI.dll" />
+    <Content Include="bin\Debug\UnityEngine.UIElementsModule.dll" />
+    <Content Include="bin\Debug\UnityEngine.UIModule.dll" />
+    <Content Include="bin\Debug\UnityEngine.UnityAnalyticsCommonModule.dll" />
+    <Content Include="bin\Debug\UnityEngine.UnityAnalyticsModule.dll" />
+    <Content Include="bin\Debug\UnityEngine.UnityConnectModule.dll" />
+    <Content Include="bin\Debug\UnityEngine.UnityCurlModule.dll" />
+    <Content Include="bin\Debug\UnityEngine.UnityWebRequestAssetBundleModule.dll" />
+    <Content Include="bin\Debug\UnityEngine.UnityWebRequestAudioModule.dll" />
+    <Content Include="bin\Debug\UnityEngine.UnityWebRequestModule.dll" />
+    <Content Include="bin\Debug\UnityEngine.UnityWebRequestTextureModule.dll" />
+    <Content Include="bin\Debug\UnityEngine.UnityWebRequestWWWModule.dll" />
+    <Content Include="bin\Debug\UnityEngine.VehiclesModule.dll" />
+    <Content Include="bin\Debug\UnityEngine.VFXModule.dll" />
+    <Content Include="bin\Debug\UnityEngine.VideoModule.dll" />
+    <Content Include="bin\Debug\UnityEngine.VirtualTexturingModule.dll" />
+    <Content Include="bin\Debug\UnityEngine.VRModule.dll" />
+    <Content Include="bin\Debug\UnityEngine.WindModule.dll" />
+    <Content Include="bin\Debug\UnityEngine.XRModule.dll" />
+    <Content Include="obj\Debug\StationLimitsFixer.csproj.FileListAbsolute.txt" />
+    <Content Include="obj\Debug\StationLimitsFixer.dll" />
+    <Content Include="obj\Debug\StationLimitsFixer.pdb" />
+    <Content Include="PackagingAssets\icon.png" />
+    <Content Include="PackagingAssets\README.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="obj\Debug\DesignTimeResolveAssemblyReferences.cache" />
+    <None Include="obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
+    <None Include="obj\Debug\StationL.91DD3F88.Up2Date" />
+    <None Include="obj\Debug\StationLimitsFixer.csproj.AssemblyReference.cache" />
+    <None Include="obj\Debug\StationLimitsFixer.csproj.CoreCompileInputs.cache" />
+    <None Include="PackagingAssets\CHANGELOG.md" />
+    <None Include="PackagingAssets\manifest.json" />
+    <None Include="PackagingAssets\README.md" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>
+if not exist "C:\Users\JPNM9\AppData\Roaming\r2modmanPlus-local\Valheim\profiles\Default\BepInEx\plugins\StationLimitsFixer" mkdir "C:\Users\JPNM9\AppData\Roaming\r2modmanPlus-local\Valheim\profiles\Default\BepInEx\plugins\StationLimitsFixer"
+copy /Y "$(TargetPath)" "C:\Users\JPNM9\AppData\Roaming\r2modmanPlus-local\Valheim\profiles\Default\BepInEx\plugins\StationLimitsFixer\"
 		</PostBuildEvent>
-		<GenerateTargetFrameworkAttribute>false</GenerateTargetFrameworkAttribute>
-	</PropertyGroup>
-	<Target Name="PackageMod" AfterTargets="Build" Condition="'$(Configuration)' == 'Release'">
-		<Message Importance="High" Text="Zipping Thunderstore and Nexus releases..."/>
-		<MakeDir Directories="$(TargetDir)ThunderstoreStage"/>
-		<MakeDir Directories="$(TargetDir)NexusStage"/>
-		<MakeDir Directories="$(TargetDir)NexusStage\plugins"/>
-		<Copy SourceFiles="$(TargetPath)" DestinationFolder="$(TargetDir)ThunderstoreStage"/>
-		<Copy SourceFiles="$(ProjectDir)PackagingAssets\manifest.json" DestinationFolder="$(TargetDir)ThunderstoreStage"/>
-		<Copy SourceFiles="$(ProjectDir)PackagingAssets\README.md" DestinationFolder="$(TargetDir)ThunderstoreStage"/>
-		<Copy SourceFiles="$(ProjectDir)PackagingAssets\icon.png" DestinationFolder="$(TargetDir)ThunderstoreStage"/>
-		<Copy SourceFiles="$(TargetPath)" DestinationFolder="$(TargetDir)NexusStage\plugins"/>
-		<Copy SourceFiles="$(ProjectDir)PackagingAssets\README.txt" DestinationFolder="$(TargetDir)NexusStage"/>
-		<MakeDir Directories="$(ProjectDir)Releases"/>
-		<ZipDirectory SourceDirectory="$(TargetDir)ThunderstoreStage" DestinationFile="$(ProjectDir)Releases\StationLimitsFixer_Thunderstore.zip" Overwrite="true"/>
-		<ZipDirectory SourceDirectory="$(TargetDir)NexusStage" DestinationFile="$(ProjectDir)Releases\StationLimitsFixer_Nexus.zip" Overwrite="true"/>
-		<RemoveDir Directories="$(TargetDir)ThunderstoreStage"/>
-		<RemoveDir Directories="$(TargetDir)NexusStage"/>
-		<Message Importance="High" Text="Releases successfully built in the Releases folder!"/>
-	</Target>
+    <GenerateTargetFrameworkAttribute>false</GenerateTargetFrameworkAttribute>
+  </PropertyGroup>
+  <Target Name="PackageMod" AfterTargets="Build" Condition="'$(Configuration)' == 'Release'">
+    <Message Importance="High" Text="Zipping Thunderstore and Nexus releases..." />
+    <MakeDir Directories="$(TargetDir)ThunderstoreStage" />
+    <MakeDir Directories="$(TargetDir)NexusStage" />
+    <MakeDir Directories="$(TargetDir)NexusStage\plugins" />
+    <!-- Thunderstore Assets -->
+    <Copy SourceFiles="$(TargetPath)" DestinationFolder="$(TargetDir)ThunderstoreStage" />
+    <Copy SourceFiles="$(ProjectDir)PackagingAssets\manifest.json" DestinationFolder="$(TargetDir)ThunderstoreStage" />
+    <Copy SourceFiles="$(ProjectDir)PackagingAssets\README.md" DestinationFolder="$(TargetDir)ThunderstoreStage" />
+    <Copy SourceFiles="$(ProjectDir)PackagingAssets\icon.png" DestinationFolder="$(TargetDir)ThunderstoreStage" />
+    <Copy SourceFiles="$(ProjectDir)PackagingAssets\CHANGELOG.md" DestinationFolder="$(TargetDir)ThunderstoreStage" />
+    <!-- newly added -->
+    <!-- Nexus Assets -->
+    <Copy SourceFiles="$(TargetPath)" DestinationFolder="$(TargetDir)NexusStage\plugins" />
+    <Copy SourceFiles="$(ProjectDir)PackagingAssets\README.txt" DestinationFolder="$(TargetDir)NexusStage" />
+    <Copy SourceFiles="$(ProjectDir)PackagingAssets\CHANGELOG.md" DestinationFolder="$(TargetDir)NexusStage" />
+    <!-- newly added -->
+    <MakeDir Directories="$(ProjectDir)Releases" />
+    <ZipDirectory SourceDirectory="$(TargetDir)ThunderstoreStage" DestinationFile="$(ProjectDir)Releases\StationLimitsFixer_Thunderstore.zip" Overwrite="true" />
+    <ZipDirectory SourceDirectory="$(TargetDir)NexusStage" DestinationFile="$(ProjectDir)Releases\StationLimitsFixer_Nexus.zip" Overwrite="true" />
+    <RemoveDir Directories="$(TargetDir)ThunderstoreStage" />
+    <RemoveDir Directories="$(TargetDir)NexusStage" />
+    <Message Importance="High" Text="Releases successfully built in the Releases folder!" />
+  </Target>
 </Project>

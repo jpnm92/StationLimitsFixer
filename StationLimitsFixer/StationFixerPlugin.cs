@@ -7,7 +7,7 @@ using System.Collections.Generic;
 
 namespace StationLimitsFixer
 {
-    [BepInPlugin("com.custom.stationlimits", "Station Limits Fixer", "1.1.0")] // FAFO Edition
+    [BepInPlugin("com.custom.stationlimits", "Station Limits Fixer", "1.2.2")] // FAFO Edition
     public class StationFixerPlugin : BaseUnityPlugin
     {
         public static ConfigEntry<float> HitboxSize;
@@ -69,7 +69,8 @@ namespace StationLimitsFixer
                 if (piece != null) piece.m_spaceRequirement = 0f;
 
                 // 2. Shrink Hitboxes - EXCEPT the Black Forge Cooler (ext1) to stop the floating issue
-                if (name != "blackforge_ext1")
+                //2.1 - The Piece Workbench Ext2 is also excluded because it has a unique hitbox that doesn't cause issues and looks better when left alone
+                if (name != "blackforge_ext1" && name != "piece_workbench_ext2")
                 {
                     Collider[] colliders = prefab.GetComponentsInChildren<Collider>();
                     foreach (Collider col in colliders)
