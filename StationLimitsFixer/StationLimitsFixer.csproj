@@ -213,4 +213,9 @@ copy /Y "$(TargetPath)" "C:\Users\JPNM9\AppData\Roaming\r2modmanPlus-local\Valhe
     <RemoveDir Directories="$(TargetDir)NexusStage" />
     <Message Importance="High" Text="Releases successfully built in the Releases folder!" />
   </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <UserProperties packagingassets_4manifest_1json__JsonSchema="" />
+    </VisualStudio>
+  </ProjectExtensions>
 </Project>

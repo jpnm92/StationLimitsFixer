@@ -1,6 +1,6 @@
 {
     "name": "StationLimitsFixer",
-    "version_number": "1.2.2",
+    "version_number": "1.4.1",
     "website_url": "https://github.com/jpnm92/StationLimitsFixer",
     "description": "Shrinks the physical placement boundaries of crafting station improvements, extends their connection range, and allows brute-forcing smelters/kilns anywhere.",
     "dependencies": [
