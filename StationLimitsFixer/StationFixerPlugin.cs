@@ -7,7 +7,7 @@ using System.Collections.Generic;
 
 namespace StationLimitsFixer
 {
-    [BepInPlugin("com.custom.stationlimits", "Station Limits Fixer", "1.4.1")]
+    [BepInPlugin("com.custom.stationlimits", "Station Limits Fixer", "1.4.2")]
     [BepInDependency("Azumatt.AzuWorkbenchTweaks", BepInDependency.DependencyFlags.SoftDependency)]
     public class StationFixerPlugin : BaseUnityPlugin
     {

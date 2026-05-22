@@ -1,4 +1,8 @@
 # Changelog
+
+## [1.4.2] - Roof Requirement Fix
+- **Roof Check Safety:** The roof requirement patch now only disables roof checks when the config is enabled and a station actually has a roof check point, preventing exceptions on stations that do not use roof checks.
+
 ## [1.4.1] - Forgot to update the description hehe.
 ## [1.4.0] - The Performance & Polish Update
 - **Zero-GC Performance Overhaul:** Completely replaced slow `MethodInfo.Invoke` reflection calls with ultra-fast Harmony Delegates for both brute-force placement and the new auto-recipe scanning. This eliminates micro-stutters and garbage collection overhead.
