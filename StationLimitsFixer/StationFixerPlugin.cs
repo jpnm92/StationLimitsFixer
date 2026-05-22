@@ -138,7 +138,11 @@ namespace StationLimitsFixer
                 }
 
                 if (station != null && !_azuWorkbenchPresent)
-                    station.m_craftRequireRoof = !RemoveRoofRequirement.Value;
+                {
+                    // Only disable roof requirement if user explicitly opts in, don't force it on
+                    if (RemoveRoofRequirement.Value && station.m_roofCheckPoint != null)
+                        station.m_craftRequireRoof = false;
+                }
 
                 count++;
             }
