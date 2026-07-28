@@ -7,7 +7,7 @@ using System.Collections.Generic;
 
 namespace StationLimitsFixer
 {
-    [BepInPlugin("com.custom.stationlimits", "Station Limits Fixer", "1.4.2")]
+    [BepInPlugin("com.custom.stationlimits", "Station Limits Fixer", "1.4.3")]
     [BepInDependency("Azumatt.AzuWorkbenchTweaks", BepInDependency.DependencyFlags.SoftDependency)]
     public class StationFixerPlugin : BaseUnityPlugin
     {
@@ -130,11 +130,9 @@ namespace StationLimitsFixer
                 }
 
                 // Only touch these fields if AzuWorkbenchTweaks isn't managing them
-                if (ext != null)
+                if (ext != null && !_azuWorkbenchPresent)
                 {
-                    if (!_azuWorkbenchPresent)
-                        ext.m_maxStationDistance = MaxConnectionDistance.Value;
-                    ext.m_continousConnection = true;
+                    ext.m_maxStationDistance = MaxConnectionDistance.Value;
                 }
 
                 if (station != null && !_azuWorkbenchPresent)
@@ -149,19 +147,18 @@ namespace StationLimitsFixer
 
             if (updateActiveSceneObjects)
             {
-                StationExtension[] activeExtensions = UnityEngine.Object.FindObjectsByType<StationExtension>(FindObjectsSortMode.None);
-                foreach (StationExtension activeExt in activeExtensions)
+                if (!_azuWorkbenchPresent)
                 {
-                    if (!_azuWorkbenchPresent)
+                    StationExtension[] activeExtensions = UnityEngine.Object.FindObjectsByType<StationExtension>(FindObjectsSortMode.None);
+                    foreach (StationExtension activeExt in activeExtensions)
                         activeExt.m_maxStationDistance = MaxConnectionDistance.Value;
-                    activeExt.m_continousConnection = true;
                 }
 
-                if (!_azuWorkbenchPresent)
+                if (!_azuWorkbenchPresent && RemoveRoofRequirement.Value)
                 {
                     CraftingStation[] activeStations = UnityEngine.Object.FindObjectsByType<CraftingStation>(FindObjectsSortMode.None);
                     foreach (CraftingStation activeStat in activeStations)
-                        activeStat.m_craftRequireRoof = !RemoveRoofRequirement.Value;
+                        activeStat.m_craftRequireRoof = false;
                 }
             }
 
@@ -180,6 +177,7 @@ namespace StationLimitsFixer
             private static SetPlacementGhostValid_Bool_Delegate SetGhostValidBool;
             private static SetPlacementGhostValid_Void_Delegate SetGhostValidVoid;
             private static SetInvalidPlacementHighlight_Delegate SetHighlight;
+            private static int _groundCheckMask;
 
             private static readonly HashSet<string> bulkyPieces = new HashSet<string>
             { "$piece_smelter", "$piece_charcoalkiln", "$piece_blastfurnace", "$piece_windmill" };
@@ -197,6 +195,8 @@ namespace StationLimitsFixer
 
                 var methodHighlight = AccessTools.Method(typeof(Piece), "SetInvalidPlacementHeightlight", new System.Type[] { typeof(bool) });
                 if (methodHighlight != null) SetHighlight = AccessTools.MethodDelegate<SetInvalidPlacementHighlight_Delegate>(methodHighlight);
+
+                _groundCheckMask = LayerMask.GetMask("piece", "Default", "static_solid");
             }
 
             public static void Postfix(Player __instance, ref GameObject ___m_placementGhost, ref Player.PlacementStatus ___m_placementStatus)
@@ -211,7 +211,7 @@ namespace StationLimitsFixer
 
                     if (!AllowSmeltersOnWood.Value && piece.m_groundOnly)
                     {
-                        if (Physics.Raycast(___m_placementGhost.transform.position + Vector3.up, Vector3.down, out RaycastHit hit, 2f, LayerMask.GetMask("piece", "Default", "static_solid")))
+                        if (Physics.Raycast(___m_placementGhost.transform.position + Vector3.up, Vector3.down, out RaycastHit hit, 2f, _groundCheckMask))
                         {
                             if (hit.collider.GetComponentInParent<Piece>() != null) return;
                         }
