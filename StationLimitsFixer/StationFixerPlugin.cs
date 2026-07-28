@@ -177,6 +177,7 @@ namespace StationLimitsFixer
             private static SetPlacementGhostValid_Bool_Delegate SetGhostValidBool;
             private static SetPlacementGhostValid_Void_Delegate SetGhostValidVoid;
             private static SetInvalidPlacementHighlight_Delegate SetHighlight;
+            private static int _groundCheckMask;
 
             private static readonly HashSet<string> bulkyPieces = new HashSet<string>
             { "$piece_smelter", "$piece_charcoalkiln", "$piece_blastfurnace", "$piece_windmill" };
@@ -194,6 +195,8 @@ namespace StationLimitsFixer
 
                 var methodHighlight = AccessTools.Method(typeof(Piece), "SetInvalidPlacementHeightlight", new System.Type[] { typeof(bool) });
                 if (methodHighlight != null) SetHighlight = AccessTools.MethodDelegate<SetInvalidPlacementHighlight_Delegate>(methodHighlight);
+
+                _groundCheckMask = LayerMask.GetMask("piece", "Default", "static_solid");
             }
 
             public static void Postfix(Player __instance, ref GameObject ___m_placementGhost, ref Player.PlacementStatus ___m_placementStatus)
@@ -208,7 +211,7 @@ namespace StationLimitsFixer
 
                     if (!AllowSmeltersOnWood.Value && piece.m_groundOnly)
                     {
-                        if (Physics.Raycast(___m_placementGhost.transform.position + Vector3.up, Vector3.down, out RaycastHit hit, 2f, LayerMask.GetMask("piece", "Default", "static_solid")))
+                        if (Physics.Raycast(___m_placementGhost.transform.position + Vector3.up, Vector3.down, out RaycastHit hit, 2f, _groundCheckMask))
                         {
                             if (hit.collider.GetComponentInParent<Piece>() != null) return;
                         }
