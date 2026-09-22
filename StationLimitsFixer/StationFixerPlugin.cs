@@ -129,19 +129,22 @@ namespace StationLimitsFixer
                     }
                 }
 
-                // Only touch these fields if AzuWorkbenchTweaks isn't managing them
+                // Apply changes to the prefab's components if extension is present and AzuWorkbenchTweaks is not present
                 if (ext != null)
                 {
                     if (!_azuWorkbenchPresent)
                         ext.m_maxStationDistance = MaxConnectionDistance.Value;
                     ext.m_continousConnection = true;
                 }
-
+                // Apply changes to the prefab's components if it's a crafting station and AzuWorkbenchTweaks is not present
                 if (station != null && !_azuWorkbenchPresent)
                 {
-                    // Only disable roof requirement if user explicitly opts in, don't force it on
-                    if (RemoveRoofRequirement.Value && station.m_roofCheckPoint != null)
-                        station.m_craftRequireRoof = false;
+                    CraftingStation[] activeStations = UnityEngine.Object.FindObjectsByType<CraftingStation>(FindObjectsSortMode.None);
+                    foreach (CraftingStation activeStat in activeStations)
+                    {
+                        if (activeStat.m_roofCheckPoint != null)
+                            activeStat.m_craftRequireRoof = !RemoveRoofRequirement.Value;
+                    }
                 }
 
                 count++;
