@@ -1,12 +1,11 @@
-# ⚠️ IMPORTANT FOR 1.4.1 UPDATE
-**If you are updating from version 1.2.2, I recommend you to delete the old config file**
-It's not necessarily needed but the new default config file represents better default behavior for smelters, kilns, mills.
-
 # Station Limits Fixer (FAFO Edition)
 
-**Disclaimer:** This is my first mod. It is the direct result of me "fucking around and finding out" because Valheim's building restrictions are... bullshit! If it breaks your game, you probably shouldn't have trusted a guy who just learned what a BoxCollider was yesterday. 
+**Disclaimer:** This is my first mod. It is the direct result of me "fucking around and finding out" because Valheim's building restrictions are... bullshit!
 
-*(It's actually highly optimized now and doesn't add any new assets, only edits. So even if you uninstall it mid-playthrough, your world won't explode. You might just have to replace some workstations).*
+**TLDR:** You will be able to place anything (crafting bench, smelter, etc) in non flat terrain, extensions aren't so fat and they can be on the other side of a wall.
+
+## Installation:
+1. Extract the DLL to your `BepInEx/plugins` folder or just install with Gale like a normal person.
 
 ## Why did I make this?
 Because I got tired of this dumbass game telling me there's no space when very obviously I HAVE THE FUCKING SPACE.
@@ -18,9 +17,6 @@ Because I got tired of this dumbass game telling me there's no space when very o
 - **Brute Force Smelters (FAFO Override):** Enabled by default. Tired of the game telling you a Blast Furnace or Windmill needs perfectly flat dirt? This overrides the physics engine so you can place them anywhere. **Bonus:** It actually respects the game's Ward system, so you can't use this to bypass restrictions and drop a Smelter in the middle of your friend's living room.
 - **Brain-Dead Range:** Extensions now connect from 25+ meters away. Put your upgrades in the basement, the attic, the garden or your mother—you know, as long as she's between the set distance in the config, the workbench doesn't care.
 - **Roof Needed (Optional):** You can toggle whether your main crafting stations need a roof or not. The default is vanilla behavior (because sometimes you want to stay a little bit of a Viking).
-
-## Installation:
-1. Extract the DLL to your `BepInEx/plugins` folder or just install with r2modman like a normal person.
 
 ## Why am I so rude?
 I am honestly pissed off I couldn't find any mod that does what I just did. Also I kind of enjoy being an ass. It is what it is.

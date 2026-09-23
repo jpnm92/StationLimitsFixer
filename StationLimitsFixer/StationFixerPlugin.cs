@@ -134,7 +134,6 @@ namespace StationLimitsFixer
                 {
                     if (!_azuWorkbenchPresent)
                         ext.m_maxStationDistance = MaxConnectionDistance.Value;
-                    ext.m_continousConnection = true;
                 }
                 // Apply changes to the prefab's components if it's a crafting station and AzuWorkbenchTweaks is not present
                 if (station != null && !_azuWorkbenchPresent)
