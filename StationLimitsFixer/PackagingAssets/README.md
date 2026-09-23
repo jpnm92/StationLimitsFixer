@@ -2,21 +2,68 @@
 
 **Disclaimer:** This is my first mod. It is the direct result of me "fucking around and finding out" because Valheim's building restrictions are... bullshit!
 
-**TLDR:** You will be able to place anything (crafting bench, smelter, etc) in non flat terrain, extensions aren't so fat and they can be on the other side of a wall.
+## TL;DR
+Sick of Valheim's placement restrictions? This mod lets you place anything on any terrain, shrinks extension hitboxes so they don't take up so much space, extends their connection range to 25+ meters, removes roof requirements, and auto-scans custom mod items. Install it, tweak the config if needed, and build however you want. Respects Ward systems so you can't use it to grief.
 
-## Installation:
-1. Extract the DLL to your `BepInEx/plugins` folder or just install with Gale like a normal person.
+## Installation
+1. **Via Gale (Recommended):** Search for "Station Limits Fixer" in [Gale](https://github.com/MythicManiac/Gale) and install.
+2. **Manual:** Extract the DLL file to your `BepInEx/plugins` folder.
+3. **Via Mod Manager:** Most Valheim mod managers support Thunderstore, where this mod is hosted.
+4. **Start the game.** The mod auto-configures on first launch.
 
 ## Why did I make this?
 Because I got tired of this dumbass game telling me there's no space when very obviously I HAVE THE FUCKING SPACE.
 
-## What this actually does:
-- **Universal Mod Compatibility:** I originally hardcoded a list of vanilla pieces, but that was stupid. Now, the mod dynamically scans every single loaded object in the game's memory. If you download another mod that adds a "Magic Bullshit Forge", this mod will automatically fix its range and hitboxes without me having to write a patch for it.
-- **Surgical Hitbox Shrinking:** The mod makes workbench "improvements" physically tiny so you can stack them like sardines. However, it now features a "Smart Filter" that ignores trigger colliders, meaning you can still actually look at them and press 'E' to interact.
-- **The "Escape Hatch" Config:** Sometimes shrinking a hitbox makes a piece look visually broken. Instead of me constantly updating the mod to fix edge cases, I added an `ExcludedHitboxPieces` config. If a piece breaks, just type its prefab name in the config, and the mod will ignore it. *(The Black Forge Cooler and the Tanning Rack are excluded by default).*
-- **Brute Force Smelters (FAFO Override):** Enabled by default. Tired of the game telling you a Blast Furnace or Windmill needs perfectly flat dirt? This overrides the physics engine so you can place them anywhere. **Bonus:** It actually respects the game's Ward system, so you can't use this to bypass restrictions and drop a Smelter in the middle of your friend's living room.
-- **Brain-Dead Range:** Extensions now connect from 25+ meters away. Put your upgrades in the basement, the attic, the garden or your mother—you know, as long as she's between the set distance in the config, the workbench doesn't care.
-- **Roof Needed (Optional):** You can toggle whether your main crafting stations need a roof or not. The default is vanilla behavior (because sometimes you want to stay a little bit of a Viking).
+## Features
+
+### 🎯 Hitbox Exclusions (Smart Filter)
+The mod makes workbench extensions physically tiny so they don't take up space and can be placed close together. This is done by dynamically shrinking the collision boxes of all extension pieces.
+
+- **Smart Filtering:** The mod intelligently ignores trigger colliders, so you can still interact with stations and press 'E' to use them.
+- **Configurable Hitbox Size:** Adjust `ImprovementHitboxSize` to control the physical footprint (default: 0.6). Lower values = smaller hitboxes.
+- **Escape Hatch:** If a piece breaks or looks visually weird after shrinking, add its prefab name to the `ExcludedHitboxPieces` config and the mod will skip it. By default, the Black Forge Cooler and Tanning Rack are excluded for visual fidelity.
+
+### ⚒️ Smelter Override Behavior (FAFO)
+Tired of the game refusing to place Smelters, Kilns, Blast Furnaces, and Windmills because the terrain isn't perfectly flat?
+
+- **Brute Force Placement:** Enabled by default. Override physics checks so heavy crafting stations can be placed anywhere.
+- **Wood Floor Safety:** If `AllowSmeltersOnWood` is disabled (default), the mod will still prevent you from placing smelters on wooden floors, respecting the vanilla balance.
+- **Ward Respect:** The brute force system respects Valheim's Ward/territory system, so you can't use it to place crafting stations in other players' protected areas (grief-proofing).
+
+### 📡 Extended Connection Range
+Extensions now connect from 25+ meters away by default, instead of the vanilla ~10 meters.
+
+- **Increased Distance:** Adjust `MaxRange` to change the connection distance (default: 25). Put your upgrades in the basement, attic, or garden—anywhere within range.
+- **AzuWorkbenchTweaks Compatibility:** If you have AzuWorkbenchTweaks installed, this mod automatically yields control of connection range to avoid conflicts.
+
+### 🏠 Optional Roof Requirements
+Toggle whether your main crafting stations (workbenches, smelters, etc.) require a roof.
+
+- **NoRoofRequired Config:** Set to `true` to let stations work in the rain or under the open sky (default: `false`). Perfect for outdoor or underground setups without massive roof structures.
+- **AzuWorkbenchTweaks Compatibility:** If you have AzuWorkbenchTweaks installed, this setting is disabled to prevent mod conflicts.
+
+### 🔄 Universal Mod Compatibility
+Valheim modding ecosystem is growing. This mod doesn't rely on a hardcoded list of pieces—it scans **every loaded object** in the game and applies the same fixes to all custom crafting stations added by other mods.
+
+- **Dynamic Scanning:** New magic forges, custom workbenches, or themed crafting stations from other mods? They're automatically patched without mod updates.
+- **Auto Recipe Scanning:** Optionally scan for newly unlocked recipes every time you open a crafting station (enabled by default). Fixes recipe injection delays from heavily modded item pools.
+
+### ⚙️ Configuration
+Most settings are available in the BepInEx config file (`BepInEx/config/com.custom.stationlimits.cfg`). Common tweaks:
+
+| Setting | Description | Default |
+|---------|-------------|---------|
+| `ImprovementHitboxSize` | Multiplier for extension hitbox size (lower = smaller) | 0.6 |
+| `MaxRange` | Maximum distance extensions connect to stations (meters) | 25 |
+| `NoRoofRequired` | Toggle roof requirement for crafting stations | false |
+| `ForceSmelterPlacement` | Brute force smelter placement on uneven terrain | true |
+| `AllowSmeltersOnWood` | Allow heavy smelters on wooden floors | false |
+| `ExcludedHitboxPieces` | Comma-separated prefab names to skip hitbox shrinking | blackforge_ext1,piece_workbench_ext2 |
+| `AutoScanRecipes` | Auto-scan recipes when opening a station | true |
+
+## Multiplayer & Safety
+- **Ward System:** Fully respects Valheim's Ward system. You cannot use this mod to bypass protection and place structures in other players' bases.
+- **Seamless Compatibility:** Soft-depends on AzuWorkbenchTweaks to avoid conflicts if you use both mods.
 
 ## Why am I so rude?
 I am honestly pissed off I couldn't find any mod that does what I just did. Also I kind of enjoy being an ass. It is what it is.
