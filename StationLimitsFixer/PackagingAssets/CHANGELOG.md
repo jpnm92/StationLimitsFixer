@@ -1,5 +1,10 @@
 # Changelog
 
+## [1.4.3] - Relax Connection Behavior & Expanded Docs
+- **Relaxed Connection Behavior:** Removed forced `ext.m_continousConnection = true;` assignment. Extension connection behavior is now determined by prefab/game settings rather than being hard-coded to always be enabled.
+- **Enhanced Documentation:** Significantly expanded README with clearer installation guidance, TL;DR section, detailed feature breakdowns (hitbox exclusions, smelter override behavior, extended connection range, optional roof requirements), configuration table, and multiplayer safety notes.
+- **Improved Clarity:** Reorganized feature descriptions for better readability and user understanding of how each feature works and its configuration options.
+
 ## [1.4.2] - Roof Requirement Fix
 - **Roof Check Safety:** The roof requirement patch now only disables roof checks when the config is enabled and a station actually has a roof check point, preventing exceptions on stations that do not use roof checks.
 
