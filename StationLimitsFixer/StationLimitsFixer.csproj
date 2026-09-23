@@ -182,36 +182,35 @@
     <None Include="PackagingAssets\README.md" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <PropertyGroup>
-    <PostBuildEvent>if not exist "C:\Users\JPNM9\AppData\Roaming\com.kesomannen.gale\valheim\profiles\Solo\BepInEx\plugins\StationLimitsFixer" mkdir "C:\Users\JPNM9\AppData\Roaming\com.kesomannen.gale\valheim\profiles\Solo\BepInEx\plugins\StationLimitsFixer"
-copy /Y "$(TargetPath)" "C:\Users\JPNM9\AppData\Roaming\com.kesomannen.gale\valheim\profiles\Solo\BepInEx\plugins\StationLimitsFixer"
+	<PropertyGroup>
+		<PostBuildEvent>
+			if not exist "C:\Users\JPNM9\AppData\Roaming\com.kesomannen.gale\valheim\profiles\Solo\BepInEx\plugins\StationLimitsFixer" mkdir "C:\Users\JPNM9\AppData\Roaming\com.kesomannen.gale\valheim\profiles\Solo\BepInEx\plugins\StationLimitsFixer"
+			copy /Y "$(TargetPath)" "C:\Users\JPNM9\AppData\Roaming\com.kesomannen.gale\valheim\profiles\Solo\BepInEx\plugins\StationLimitsFixer"
 		</PostBuildEvent>
-    <GenerateTargetFrameworkAttribute>false</GenerateTargetFrameworkAttribute>
-  </PropertyGroup>
-  <Target Name="PackageMod" AfterTargets="Build" Condition="'$(Configuration)' == 'Release'">
-    <Message Importance="High" Text="Zipping Thunderstore and Nexus releases..." />
-    <MakeDir Directories="$(TargetDir)ThunderstoreStage" />
-    <MakeDir Directories="$(TargetDir)NexusStage" />
-    <MakeDir Directories="$(TargetDir)NexusStage\plugins" />
-    <!-- Thunderstore Assets -->
-    <Copy SourceFiles="$(TargetPath)" DestinationFolder="$(TargetDir)ThunderstoreStage" />
-    <Copy SourceFiles="$(ProjectDir)PackagingAssets\manifest.json" DestinationFolder="$(TargetDir)ThunderstoreStage" />
-    <Copy SourceFiles="$(ProjectDir)PackagingAssets\README.md" DestinationFolder="$(TargetDir)ThunderstoreStage" />
-    <Copy SourceFiles="$(ProjectDir)PackagingAssets\icon.png" DestinationFolder="$(TargetDir)ThunderstoreStage" />
-    <Copy SourceFiles="$(ProjectDir)PackagingAssets\CHANGELOG.md" DestinationFolder="$(TargetDir)ThunderstoreStage" />
-    <!-- newly added -->
-    <!-- Nexus Assets -->
-    <Copy SourceFiles="$(TargetPath)" DestinationFolder="$(TargetDir)NexusStage\plugins" />
-    <Copy SourceFiles="$(ProjectDir)PackagingAssets\README.txt" DestinationFolder="$(TargetDir)NexusStage" />
-    <Copy SourceFiles="$(ProjectDir)PackagingAssets\CHANGELOG.md" DestinationFolder="$(TargetDir)NexusStage" />
-    <!-- newly added -->
-    <MakeDir Directories="$(ProjectDir)Releases" />
-    <ZipDirectory SourceDirectory="$(TargetDir)ThunderstoreStage" DestinationFile="$(ProjectDir)Releases\StationLimitsFixer_Thunderstore.zip" Overwrite="true" />
-    <ZipDirectory SourceDirectory="$(TargetDir)NexusStage" DestinationFile="$(ProjectDir)Releases\StationLimitsFixer_Nexus.zip" Overwrite="true" />
-    <RemoveDir Directories="$(TargetDir)ThunderstoreStage" />
-    <RemoveDir Directories="$(TargetDir)NexusStage" />
-    <Message Importance="High" Text="Releases successfully built in the Releases folder!" />
-  </Target>
+		<GenerateTargetFrameworkAttribute>false</GenerateTargetFrameworkAttribute>
+	</PropertyGroup>
+	<Target Name="PackageMod" AfterTargets="Build" Condition="'$(Configuration)' == 'Release'">
+		<Message Importance="High" Text="Zipping Hexium and Nexus releases..." />
+		<MakeDir Directories="$(TargetDir)HexiumStage" />
+		<MakeDir Directories="$(TargetDir)NexusStage" />
+		<MakeDir Directories="$(TargetDir)NexusStage\plugins" />
+		<!-- Hexium Assets (Thunderstore-format package) -->
+		<Copy SourceFiles="$(TargetPath)" DestinationFolder="$(TargetDir)HexiumStage" />
+		<Copy SourceFiles="$(ProjectDir)PackagingAssets\manifest.json" DestinationFolder="$(TargetDir)HexiumStage" />
+		<Copy SourceFiles="$(ProjectDir)PackagingAssets\README.md" DestinationFolder="$(TargetDir)HexiumStage" />
+		<Copy SourceFiles="$(ProjectDir)PackagingAssets\icon.png" DestinationFolder="$(TargetDir)HexiumStage" />
+		<Copy SourceFiles="$(ProjectDir)PackagingAssets\CHANGELOG.md" DestinationFolder="$(TargetDir)HexiumStage" />
+		<!-- Nexus Assets -->
+		<Copy SourceFiles="$(TargetPath)" DestinationFolder="$(TargetDir)NexusStage\plugins" />
+		<Copy SourceFiles="$(ProjectDir)PackagingAssets\README.txt" DestinationFolder="$(TargetDir)NexusStage" />
+		<Copy SourceFiles="$(ProjectDir)PackagingAssets\CHANGELOG.md" DestinationFolder="$(TargetDir)NexusStage" />
+		<MakeDir Directories="$(ProjectDir)Releases" />
+		<ZipDirectory SourceDirectory="$(TargetDir)HexiumStage" DestinationFile="$(ProjectDir)Releases\StationLimitsFixer_Hexium.zip" Overwrite="true" />
+		<ZipDirectory SourceDirectory="$(TargetDir)NexusStage" DestinationFile="$(ProjectDir)Releases\StationLimitsFixer_Nexus.zip" Overwrite="true" />
+		<RemoveDir Directories="$(TargetDir)HexiumStage" />
+		<RemoveDir Directories="$(TargetDir)NexusStage" />
+		<Message Importance="High" Text="Releases successfully built in the Releases folder!" />
+	</Target>
   <ProjectExtensions>
     <VisualStudio>
       <UserProperties packagingassets_4manifest_1json__JsonSchema="" />

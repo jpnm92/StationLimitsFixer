@@ -7,7 +7,7 @@ using System.Collections.Generic;
 
 namespace StationLimitsFixer
 {
-    [BepInPlugin("com.custom.stationlimits", "Station Limits Fixer", "1.4.2")]
+    [BepInPlugin("com.custom.stationlimits", "Station Limits Fixer", "1.4.3")]
     [BepInDependency("Azumatt.AzuWorkbenchTweaks", BepInDependency.DependencyFlags.SoftDependency)]
     public class StationFixerPlugin : BaseUnityPlugin
     {
@@ -156,7 +156,6 @@ namespace StationLimitsFixer
                 {
                     if (!_azuWorkbenchPresent)
                         activeExt.m_maxStationDistance = MaxConnectionDistance.Value;
-                    activeExt.m_continousConnection = true;
                 }
 
                 if (!_azuWorkbenchPresent)
